@@ -4,6 +4,10 @@
   --color-sky: #7ec0ee;
   --color-grass: #6fd40e;
   --color-grass-border: #5eb10e;
+  --color-building: #FFBC42;
+  --color-weapons: lightgreen;
+  --color-magic: #B4ADEA;
+  --color-hp: #555;
   --color-white: #fff;
   /* Text */
   --text-shadow: 6px 6px 0px rgba(0,0,0,0.2);

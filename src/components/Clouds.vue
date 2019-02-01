@@ -1,6 +1,6 @@
 <template>
   <div class="clouds">
-    <div class="cloud-1" :style></div>
+    <div class="cloud-1"></div>
     <div class="cloud-2"></div>
     <div class="cloud-3"></div>
   </div>
@@ -19,7 +19,7 @@ export default {};
   height: 5rem;
   background-color: var(--color-white);
   box-shadow: var(--box-shadow);
-  z-index: 5;
+  z-index: 1000;
 }
 
 .clouds > *::before {
@@ -30,7 +30,6 @@ export default {};
   width: 5rem;
   height: 5rem;
   border-radius: 100%;
-  border-right: 1px solid lightgray;
   background-color: var(--color-white);
   top: 1rem;
   left: -3rem;
@@ -44,15 +43,14 @@ export default {};
   width: 5rem;
   height: 5rem;
   border-radius: 100%;
-  border-right: 1px solid lightgray;
   background-color: var(--color-white);
   top: 1.5rem;
   left: 3rem;
-  z-index: -100;
+  z-index: -1000;
 }
 
 .cloud-1 {
-  top: 15rem;
+  top: 2rem;
   left: 20rem;
 }
 

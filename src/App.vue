@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Clouds/>
     <Header/>
     <BattleField/>
   </div>

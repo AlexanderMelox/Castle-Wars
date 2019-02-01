@@ -1,12 +1,23 @@
 <template>
   <div class="battlefield">
-    <div class="battlefield__top">top</div>
+    <div class="battlefield__top">
+      <PlayerOneResources/>
+      <PlayerTwoResources/>
+    </div>
     <div class="battlefield__bottom"></div>
   </div>
 </template>
 
 <script>
-export default {};
+import PlayerOneResources from "./PlayerOneResources";
+import PlayerTwoResources from "./PlayerTwoResources";
+
+export default {
+  components: {
+    PlayerOneResources,
+    PlayerTwoResources
+  }
+};
 </script>
 
 <style scoped>
@@ -14,6 +25,7 @@ export default {};
   grid-area: battlefield;
   display: grid;
   grid-template-rows: 3fr 1fr;
+  position: relative;
 }
 
 .battlefield__top {
