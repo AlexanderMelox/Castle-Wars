@@ -46,6 +46,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isPlayerOne: null
+    };
+  },
   props: {
     player: {
       type: String,
@@ -107,6 +112,7 @@ export default {
   padding: 2rem;
   color: var(--color-white);
   box-shadow: var(--text-shadow);
+  border: 3px solid rgba(0, 0, 0, 0.2);
   font-size: 2rem;
 }
 

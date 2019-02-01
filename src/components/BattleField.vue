@@ -13,6 +13,8 @@
         :castleHealth="castleHealth"
         :gateHealth="gateHealth"
       />
+      <Castle player="Player 1" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
+      <Castle player="Player 2" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
     </div>
     <div class="battlefield__bottom"></div>
   </div>
@@ -20,6 +22,7 @@
 
 <script>
 import PlayerResources from "./PlayerResources";
+import Castle from "./Castle.vue";
 
 export default {
   data() {
@@ -37,7 +40,8 @@ export default {
     };
   },
   components: {
-    PlayerResources
+    PlayerResources,
+    Castle
   }
 };
 </script>
@@ -52,6 +56,8 @@ export default {
 
 .battlefield__top {
   background-color: var(--color-sky);
+  overflow: hidden;
+  position: relative;
 }
 
 .battlefield__bottom {
