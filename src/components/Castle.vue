@@ -1,6 +1,10 @@
 <template>
   <div class="castle-container">
-    <div class="castle" :class="{ 'castle--one': isPlayerOne, 'castle--two': !isPlayerOne }" :style="{ height: castleHeight + '%' }"></div>
+    <div
+      class="castle"
+      :class="{ 'castle--one': isPlayerOne, 'castle--two': !isPlayerOne }"
+      :style="{ height: castleHeight + '%' }"
+    ></div>
     <div
       class="gate"
       :class="{ 'gate--one': isPlayerOne, 'gate--two': !isPlayerOne }"
@@ -35,7 +39,7 @@ export default {
       return this.castleHealth * 1.1;
     },
     gateHeight() {
-      return this.gateHealth;
+      return this.gateHealth * 1.1;
     }
   },
   created() {

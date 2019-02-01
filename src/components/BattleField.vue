@@ -16,13 +16,17 @@
       <Castle player="Player 1" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
       <Castle player="Player 2" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
     </div>
-    <div class="battlefield__bottom"></div>
+    <div class="battlefield__bottom">
+      <Cards :cards="cardHand"/>
+    </div>
   </div>
 </template>
 
 <script>
 import PlayerResources from "./PlayerResources";
 import Castle from "./Castle.vue";
+
+import cards from "../data/cards.js";
 
 export default {
   data() {
@@ -36,12 +40,23 @@ export default {
         crystals: 5
       },
       castleHealth: 30,
-      gateHealth: 10
+      gateHealth: 10,
+      cards
     };
+  },
+  computed: {
+    cardHand() {
+      const newHand = [];
+      for (let i = 0; i < 8; i++) {
+        newHand.push(this.cards[Math.floor(Math.random() * this.cards.length)]);
+      }
+      return newHand;
+    }
   },
   components: {
     PlayerResources,
-    Castle
+    Castle,
+    Cards
   }
 };
 </script>

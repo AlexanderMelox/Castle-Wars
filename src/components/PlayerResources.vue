@@ -96,6 +96,7 @@ export default {
   border-radius: 2rem;
   padding: 2rem;
   width: 30rem;
+  z-index: 5000;
 }
 
 .resources--one {
