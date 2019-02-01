@@ -1,51 +1,73 @@
 <template>
-  <div class="resources resources--two">
-    <h2 class="resources__player">Player 2</h2>
+  <div class="resources" :class="{ 'resources--one': isPlayerOne, 'resources--two': !isPlayerOne }">
+    <h2 class="resources__player">{{ player }}</h2>
     <div class="resources__blocks resources__blocks--bricks">
       <div class="resources__details">
         <div>Builders</div>
-        <div>2</div>
+        <div>{{ resources.builders }}</div>
       </div>
       <div class="resources__details">
         <div>Bricks</div>
-        <div>10</div>
+        <div>{{ resources.bricks }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--weapons">
       <div class="resources__details">
         <div>Soldiers</div>
-        <div>2</div>
+        <div>{{ resources.soldiers }}</div>
       </div>
       <div class="resources__details">
         <div>Weapons</div>
-        <div>10</div>
+        <div>{{ resources.weapons }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--magic">
       <div class="resources__details">
-        <div>Sorcerers</div>
-        <div>2</div>
+        <div>Magic</div>
+        <div>{{ resources.magic }}</div>
       </div>
       <div class="resources__details">
         <div>Crystals</div>
-        <div>10</div>
+        <div>{{ resources.crystals }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--hp">
       <div class="resources__details">
         <div>Castle</div>
-        <div>30</div>
+        <div>{{ castleHealth }}</div>
       </div>
       <div class="resources__details">
         <div>Gate</div>
-        <div>10</div>
+        <div>{{ gateHealth }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    player: {
+      type: String,
+      required: true
+    },
+    resources: {
+      type: Object,
+      required: true
+    },
+    castleHealth: {
+      type: Number,
+      required: true
+    },
+    gateHealth: {
+      type: Number,
+      required: true
+    }
+  },
+  created() {
+    this.isPlayerOne = this.player === "Player 1";
+  }
+};
 </script>
 
 <style>
@@ -64,23 +86,27 @@ export default {};
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  position: absolute;
-  background-color: rgba(241, 214, 214, 0.1);
+  position: fixed;
+  top: 1rem;
   border-radius: 2rem;
   padding: 2rem;
   width: 30rem;
 }
 
+.resources--one {
+  left: 1rem;
+}
+
 .resources--two {
-  top: 0rem;
-  right: 0;
+  right: 1rem;
 }
 
 .resources__blocks {
   align-self: stretch;
   border-radius: 1.5rem;
-  padding: 1rem;
+  padding: 2rem;
   color: var(--color-white);
+  box-shadow: var(--text-shadow);
   font-size: 2rem;
 }
 

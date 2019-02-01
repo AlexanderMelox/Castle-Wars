@@ -1,21 +1,43 @@
 <template>
   <div class="battlefield">
     <div class="battlefield__top">
-      <PlayerOneResources/>
-      <PlayerTwoResources/>
+      <PlayerResources
+        player="Player 1"
+        :resources="mockResources"
+        :castleHealth="castleHealth"
+        :gateHealth="gateHealth"
+      />
+      <PlayerResources
+        player="Player 2"
+        :resources="mockResources"
+        :castleHealth="castleHealth"
+        :gateHealth="gateHealth"
+      />
     </div>
     <div class="battlefield__bottom"></div>
   </div>
 </template>
 
 <script>
-import PlayerOneResources from "./PlayerOneResources";
-import PlayerTwoResources from "./PlayerTwoResources";
+import PlayerResources from "./PlayerResources";
 
 export default {
+  data() {
+    return {
+      mockResources: {
+        builders: 2,
+        bricks: 5,
+        soldiers: 2,
+        weapons: 5,
+        magic: 2,
+        crystals: 5
+      },
+      castleHealth: 30,
+      gateHealth: 10
+    };
+  },
   components: {
-    PlayerOneResources,
-    PlayerTwoResources
+    PlayerResources
   }
 };
 </script>
