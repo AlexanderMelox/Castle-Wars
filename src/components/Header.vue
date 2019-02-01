@@ -21,5 +21,7 @@ export default {};
   color: var(--color-white);
   line-height: 1;
   text-shadow: var(--text-shadow);
+  z-index: 3000;
+  position: relative;
 }
 </style>

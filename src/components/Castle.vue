@@ -1,14 +1,10 @@
 <template>
   <div class="castle-container">
-    <div
-      class="castle"
-      :class="{ 'castle--one': isPlayerOne, 'castle--two': !isPlayerOne }"
-      :style="{height: castleHeight + 'px'}"
-    ></div>
+    <div class="castle" :class="{ 'castle--one': isPlayerOne, 'castle--two': !isPlayerOne }" :style="{ height: castleHeight + '%' }"></div>
     <div
       class="gate"
       :class="{ 'gate--one': isPlayerOne, 'gate--two': !isPlayerOne }"
-      :style="{ height: gateHeight + 'px' }"
+      :style="{ height: gateHeight + '%' }"
     ></div>
   </div>
 </template>
@@ -36,10 +32,10 @@ export default {
   },
   computed: {
     castleHeight() {
-      return this.castleHealth * 5;
+      return this.castleHealth * 1.1;
     },
     gateHeight() {
-      return this.gateHealth * 5;
+      return this.gateHealth;
     }
   },
   created() {
@@ -54,6 +50,7 @@ export default {
   transition: height 1s;
   bottom: 0;
   width: 20rem;
+  height: 100rem;
   border: 3px solid rgba(0, 0, 0, 0.4);
   box-shadow: var(--text-shadow);
 }
@@ -65,7 +62,7 @@ export default {
   width: 4rem;
   top: -4rem;
   left: -1rem;
-  height: 500%;
+  height: 200rem;
 }
 
 .castle::after {
@@ -75,7 +72,7 @@ export default {
   width: 4rem;
   top: -4rem;
   right: -1rem;
-  height: 500%;
+  height: 200rem;
   box-shadow: var(--text-shadow);
 }
 
@@ -112,7 +109,7 @@ export default {
   content: "";
   display: block;
   width: 3rem;
-  height: 2rem;
+  height: 1rem;
   position: absolute;
   top: -1rem;
   left: -0.8rem;

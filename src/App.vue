@@ -27,5 +27,6 @@ export default {
   grid-template-areas:
     "header"
     "battlefield";
+  overflow: hidden;
 }
 </style>

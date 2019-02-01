@@ -56,12 +56,12 @@ export default {
 
 .battlefield__top {
   background-color: var(--color-sky);
-  overflow: hidden;
   position: relative;
 }
 
 .battlefield__bottom {
   border-top: 5px solid var(--color-grass-border);
   background-color: var(--color-grass);
+  z-index: 3000;
 }
 </style>
