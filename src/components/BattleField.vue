@@ -25,6 +25,7 @@
 <script>
 import PlayerResources from "./PlayerResources";
 import Castle from "./Castle.vue";
+import Cards from "./Cards.vue";
 
 import cards from "../data/cards.js";
 
