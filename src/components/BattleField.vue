@@ -129,6 +129,11 @@ export default {
         alert("Congratulations Player 2 Won!");
       }
     },
+    determineActivePlayer() {
+      const activePlayer = this.activePlayer;
+      const opponent = this.activePlayer === 0 ? 1 : 0;
+      return { activePlayer, opponent };
+    },
     swat(player) {
       this.players[player].castleHealth -= 10;
     },
@@ -161,8 +166,7 @@ export default {
   created() {
     actionBus.$on("cardWasClicked", card => {
       if (this.isGameOver) return;
-      const activePlayer = this.activePlayer;
-      const opponent = this.activePlayer === 0 ? 1 : 0;
+      const { activePlayer, opponent } = this.determineActivePlayer();
 
       // Deduct the resource from the active player
       this.players[activePlayer].resources[card.type] -= card.cost;
