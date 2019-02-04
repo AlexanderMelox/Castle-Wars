@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['card', { 'weapons': card.type === 'weapons', 'building': card.type === 'building','cant-use': cantUse }]"
+    :class="['card', { 'weapons': card.type === 'weapons', 'building': card.type === 'bricks','cant-use': cantUse }]"
     @click="clicked"
   >
     <div class="card__cost">{{ card.cost }}</div>
@@ -25,7 +25,7 @@ export default {
       icons: {
         weapons:
           "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png",
-        building:
+        bricks:
           "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549310993/brick-wall.png"
       }
     };

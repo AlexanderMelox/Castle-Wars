@@ -1,5 +1,6 @@
 <template>
   <div class="battlefield">
+    <button v-if="isPlaying" class="skip-turn" @click="skipTurn">Skip turn</button>
     <div class="battlefield__menu" v-if="!isPlaying">
       <button class="battlefield__buttons" @click="startGame">2 Players</button>
       <button class="battlefield__buttons">How to Play</button>
@@ -59,11 +60,11 @@ export default {
         {
           resources: {
             builders: 2,
-            bricks: 40,
+            bricks: 5,
             soldiers: 2,
-            weapons: 40,
+            weapons: 5,
             magic: 2,
-            crystals: 40
+            crystals: 5
           },
           castleHealth: 30,
           gateHealth: 10,
@@ -72,11 +73,11 @@ export default {
         {
           resources: {
             builders: 2,
-            bricks: 40,
+            bricks: 5,
             soldiers: 2,
-            weapons: 40,
+            weapons: 5,
             magic: 2,
-            crystals: 40
+            crystals: 5
           },
           castleHealth: 30,
           gateHealth: 10,
@@ -109,6 +110,10 @@ export default {
     },
     switchPlayer() {
       this.activePlayer = this.activePlayer === 0 ? 1 : 0;
+    },
+    skipTurn() {
+      this.addResources(this.activePlayer);
+      this.switchPlayer();
     },
     addResources(player) {
       this.players[player].resources.bricks += this.players[
@@ -166,7 +171,7 @@ export default {
     saboteur(opponent) {
       const resourcesArray = this.getResourcesArray();
       resourcesArray.forEach(resource => {
-        if (this.players[opponent].resources[resource] < 4) {
+        if (this.players[opponent].resources[resource] <= 4) {
           this.players[opponent].resources[resource] = 0;
         } else {
           this.players[opponent].resources[resource] -= 4;
@@ -184,8 +189,26 @@ export default {
         this.players[player].gateHealth -= dmg;
       }
     },
-    hire(player, type) {
-      this.players[player].resources[type] += 1;
+    hire(type) {
+      this.players[this.activePlayer].resources[type] += 1;
+    },
+    addToFence(amount) {
+      this.players[this.activePlayer].gateHealth += amount;
+    },
+    addToCastle(amount) {
+      this.players[this.activePlayer].castleHealth += amount;
+    },
+    reserve() {
+      this.players[this.activePlayer].castleHealth += 8;
+      if (this.players[this.activePlayer].gateHealth < 4) {
+        this.players[this.activePlayer].gateHealth = 0;
+      } else {
+        this.players[this.activePlayer].gateHealth -= 4;
+      }
+    },
+    wain(opponent) {
+      this.players[this.activePlayer].castleHealth += 8;
+      this.players[opponent].castleHealth -= 4;
     }
   },
   computed: {},
@@ -234,8 +257,39 @@ export default {
             this.attack(opponent, 3);
             break;
           case "recruit":
-            this.hire(activePlayer, "soldiers");
+            this.hire("soldiers");
             break;
+        }
+      } else if (card.type === "bricks") {
+        switch (card.name) {
+          case "fence":
+            this.addToFence(22);
+            break;
+          case "base":
+            this.addToCastle(2);
+            break;
+          case "school":
+            this.hire("builders");
+            break;
+          case "tower":
+            this.addToCastle(5);
+            break;
+          case "defense":
+            this.addToFence(6);
+            break;
+          case "reserve":
+            this.reserve();
+            break;
+          case "babylon":
+            this.addToCastle(32);
+            break;
+          case "fort":
+            this.addToCastle(20);
+            break;
+          case "wain":
+            this.wain(opponent);
+          case "wall":
+            this.addToFence(3);
         }
       }
 
@@ -320,5 +374,30 @@ export default {
 .hide {
   opacity: 0;
   visibility: hidden;
+}
+
+.skip-turn {
+  position: fixed;
+  display: inline-block;
+  left: 50%;
+  top: 8rem;
+  transform: translateX(-50%);
+  z-index: 9999;
+  outline: none;
+  border: none;
+  color: var(--color-white);
+  font: inherit;
+  text-shadow: var(--text-shadow-small);
+  box-shadow: var(--text-shadow);
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background-color: var(--castle-red);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skip-turn:hover {
+  transform: translateY(-3px) translateX(-50%) scale(1.1);
 }
 </style>
