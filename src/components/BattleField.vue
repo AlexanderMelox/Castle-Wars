@@ -1,13 +1,19 @@
 <template>
   <div class="battlefield">
+    <div class="battlefield__menu" v-if="!isPlaying">
+      <button class="battlefield__buttons" @click="isPlaying = true">2 Players</button>
+      <button class="battlefield__buttons">How to Play</button>
+    </div>
     <div class="battlefield__top">
       <PlayerResources
+        v-if="isPlaying"
         player="Player 1"
         :resources="players[0].resources"
         :castleHealth="players[0].castleHealth"
         :gateHealth="players[0].gateHealth"
       />
       <PlayerResources
+        v-if="isPlaying"
         player="Player 2"
         :resources="players[1].resources"
         :castleHealth="players[1].castleHealth"
@@ -25,7 +31,7 @@
       />
     </div>
     <div class="battlefield__bottom">
-      <Cards :cards="cardHand" :resources="players[0].resources"/>
+      <Cards v-if="isPlaying" :cards="cardHand" :resources="players[0].resources"/>
     </div>
   </div>
 </template>
@@ -68,7 +74,8 @@ export default {
           cards: []
         }
       ],
-      cards
+      cards,
+      isPlaying: false
     };
   },
   computed: {
@@ -108,5 +115,36 @@ export default {
   border-top: 5px solid var(--color-grass-border);
   background-color: var(--color-grass);
   z-index: 3000;
+}
+
+.battlefield__menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 6000;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.battlefield__buttons {
+  outline: none;
+  border: none;
+  color: var(--color-white);
+  font: inherit;
+  text-shadow: var(--text-shadow);
+  box-shadow: var(--text-shadow);
+  font-size: 3rem;
+  padding: 1.5rem 4rem;
+  border-radius: 2rem;
+  margin: 1rem;
+  background-color: var(--castle-red);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.battlefield__buttons:hover {
+  transform: translateY(-3px) scale(1.1);
 }
 </style>
