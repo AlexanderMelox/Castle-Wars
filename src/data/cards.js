@@ -2,7 +2,7 @@ export default [
   {
     name: 'archer',
     type: 'weapons',
-    cost: 2,
+    cost: 1,
     description: 'attack 2'
   },
   {
@@ -14,14 +14,14 @@ export default [
   {
     name: 'banshee',
     type: 'weapons',
-    cost: 24,
+    cost: 28,
     description: 'attack 32',
   },
   {
     name: 'swat',
     type: 'weapons',
     cost: 18,
-    description: 'enemy castle 10',
+    description: 'enemy castle -10',
   },
   {
     name: 'thief',
@@ -45,7 +45,7 @@ export default [
     name: 'recruit',
     type: 'weapons',
     cost: 8,
-    description: 'soldiers 1',
+    description: 'soldiers +1',
   },
   {
     name: 'rider',
