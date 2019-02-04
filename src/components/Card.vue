@@ -1,10 +1,13 @@
 <template>
-  <div :class="['card', { 'weapons': card.type, 'cant-use': cantUse }]" @click="clicked">
+  <div
+    :class="['card', { 'weapons': card.type === 'weapons', 'building': card.type === 'building','cant-use': cantUse }]"
+    @click="clicked"
+  >
     <div class="card__cost">{{ card.cost }}</div>
     <div class="card__body">
       <p class="card__name">{{ card.name }}</p>
       <img class="card__icon" :src="icons[card.type]">
-      <p class="card__description">{{ card.description }}</p>
+      <p class="card__description" v-html="card.description"></p>
     </div>
   </div>
 </template>
@@ -21,7 +24,9 @@ export default {
     return {
       icons: {
         weapons:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png"
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png",
+        building:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549310993/brick-wall.png"
       }
     };
   },
@@ -112,5 +117,9 @@ export default {
 
 .weapons {
   background-color: var(--color-weapons);
+}
+
+.building {
+  background-color: var(--color-building);
 }
 </style>
