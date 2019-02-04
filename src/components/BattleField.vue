@@ -36,7 +36,7 @@
       <Cards
         v-if="isPlaying"
         :cards="players[activePlayer].cards"
-        :resources="players[0].resources"
+        :resources="players[activePlayer].resources"
       />
     </div>
   </div>
@@ -47,6 +47,7 @@ import PlayerResources from "./PlayerResources";
 import Castle from "./Castle.vue";
 import Cards from "./Cards.vue";
 
+import { actionBus } from "../main.js";
 import cards from "../data/cards.js";
 
 export default {
@@ -57,11 +58,11 @@ export default {
         {
           resources: {
             builders: 2,
-            bricks: 5,
+            bricks: 40,
             soldiers: 2,
-            weapons: 5,
+            weapons: 40,
             magic: 2,
-            crystals: 5
+            crystals: 40
           },
           castleHealth: 30,
           gateHealth: 10,
@@ -70,11 +71,11 @@ export default {
         {
           resources: {
             builders: 2,
-            bricks: 5,
+            bricks: 40,
             soldiers: 2,
-            weapons: 5,
+            weapons: 40,
             magic: 2,
-            crystals: 5
+            crystals: 40
           },
           castleHealth: 30,
           gateHealth: 10,
@@ -82,7 +83,8 @@ export default {
         }
       ],
       cards,
-      isPlaying: false
+      isPlaying: false,
+      isGameOver: false
     };
   },
   methods: {
@@ -96,9 +98,58 @@ export default {
     startingCards(player) {
       const newHand = [];
       for (let i = 0; i < 8; i++) {
-        newHand.push(this.cards[Math.floor(Math.random() * this.cards.length)]);
+        newHand.push(this.newCard());
       }
       this.players[player].cards = newHand;
+    },
+    newCard() {
+      return this.cards[Math.floor(Math.random() * this.cards.length)];
+    },
+    switchPlayer() {
+      this.activePlayer = this.activePlayer === 0 ? 1 : 0;
+    },
+    addResources(player) {
+      this.players[player].resources.bricks += this.players[
+        player
+      ].resources.builders;
+      this.players[player].resources.weapons += this.players[
+        player
+      ].resources.soldiers;
+
+      this.players[player].resources.crystals += this.players[
+        player
+      ].resources.magic;
+    },
+    checkIfGameIsOver() {
+      if (this.players[1].castleHealth <= 0) {
+        this.isGameOver = true;
+        alert("Congratulations Player 1 Won!");
+      } else if (this.players[0].castleHealth <= 0) {
+        this.isGameOver = true;
+        alert("Congratulations Player 2 Won!");
+      }
+    },
+    swat(player) {
+      this.players[player].castleHealth -= 10;
+    },
+    thief(opponent) {
+      // 1. Creates an array of resources
+      const resourcesArray = Object.keys(
+        this.players[opponent].resources
+      ).filter(
+        resource =>
+          resource === "bricks" ||
+          resource === "weapons" ||
+          resource === "crystals"
+      );
+      // 2. Loops through each resource and deducts 5
+      resourcesArray.forEach(resource => {
+        if (this.players[opponent].resources[resource] < 5) {
+          this.players[opponent].resources[resource] = 0;
+        } else {
+          this.players[opponent].resources[resource] -= 5;
+        }
+      });
     }
   },
   computed: {},
@@ -108,7 +159,31 @@ export default {
     Cards
   },
   created() {
-    console.log(this.players);
+    actionBus.$on("cardWasClicked", card => {
+      if (this.isGameOver) return;
+      const activePlayer = this.activePlayer;
+      const opponent = this.activePlayer === 0 ? 1 : 0;
+
+      // Deduct the resource from the active player
+      this.players[activePlayer].resources[card.type] -= card.cost;
+
+      // 1. Action
+      if (card.type === "weapons") {
+        if (card.name === "swat") {
+          this.swat(opponent);
+        } else if (card.name === "thief") {
+          this.thief(opponent, activePlayer);
+        }
+      }
+      // 2. Check if anyone won the game
+      this.checkIfGameIsOver();
+
+      // 3. Switch players
+      this.switchPlayer();
+
+      // 4. Get resources
+      this.addResources(activePlayer);
+    });
   }
 };
 </script>

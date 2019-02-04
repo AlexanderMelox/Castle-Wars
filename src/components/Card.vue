@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { actionBus } from "../main.js";
+
 export default {
   props: {
     card: Object,
@@ -26,7 +28,7 @@ export default {
   methods: {
     clicked() {
       if (this.cantUse) return;
-      console.log("Clicked");
+      actionBus.$emit("cardWasClicked", this.card);
     }
   },
   computed: {
