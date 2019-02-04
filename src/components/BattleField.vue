@@ -1,13 +1,14 @@
 <template>
   <div class="battlefield">
     <div class="battlefield__menu" v-if="!isPlaying">
-      <button class="battlefield__buttons" @click="isPlaying = true">2 Players</button>
+      <button class="battlefield__buttons" @click="startGame">2 Players</button>
       <button class="battlefield__buttons">How to Play</button>
     </div>
     <div class="battlefield__top">
       <PlayerResources
         v-if="isPlaying"
         player="Player 1"
+        :isActivePlayer="activePlayer === 0"
         :resources="players[0].resources"
         :castleHealth="players[0].castleHealth"
         :gateHealth="players[0].gateHealth"
@@ -15,6 +16,7 @@
       <PlayerResources
         v-if="isPlaying"
         player="Player 2"
+        :isActivePlayer="activePlayer === 1"
         :resources="players[1].resources"
         :castleHealth="players[1].castleHealth"
         :gateHealth="players[1].gateHealth"
@@ -31,7 +33,11 @@
       />
     </div>
     <div class="battlefield__bottom">
-      <Cards v-if="isPlaying" :cards="cardHand" :resources="players[0].resources"/>
+      <Cards
+        v-if="isPlaying"
+        :cards="players[activePlayer].cards"
+        :resources="players[0].resources"
+      />
     </div>
   </div>
 </template>
@@ -46,6 +52,7 @@ import cards from "../data/cards.js";
 export default {
   data() {
     return {
+      activePlayer: 0,
       players: [
         {
           resources: {
@@ -78,15 +85,23 @@ export default {
       isPlaying: false
     };
   },
-  computed: {
-    cardHand() {
+  methods: {
+    startGame() {
+      // Sets isPlaying to true
+      this.isPlaying = true;
+      // Set player's 1 and 2 cards
+      this.startingCards(0);
+      this.startingCards(1);
+    },
+    startingCards(player) {
       const newHand = [];
       for (let i = 0; i < 8; i++) {
         newHand.push(this.cards[Math.floor(Math.random() * this.cards.length)]);
       }
-      return newHand;
+      this.players[player].cards = newHand;
     }
   },
+  computed: {},
   components: {
     PlayerResources,
     Castle,

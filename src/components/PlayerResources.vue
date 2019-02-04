@@ -1,6 +1,9 @@
 <template>
-  <div class="resources" :class="{ 'resources--one': isPlayerOne, 'resources--two': !isPlayerOne }">
-    <h2 class="resources__player">{{ player }}</h2>
+  <div
+    class="resources"
+    :class="{ 'resourcses--one': isPlayerOne, 'resources--two': !isPlayerOne }"
+  >
+    <h2 class="resources__player" :class="{ 'active': isActivePlayer }">{{ player }}</h2>
     <div class="resources__blocks resources__blocks--bricks">
       <div class="resources__details">
         <div>Builders</div>
@@ -67,7 +70,8 @@ export default {
     gateHealth: {
       type: Number,
       required: true
-    }
+    },
+    isActivePlayer: Boolean
   },
   created() {
     this.isPlayerOne = this.player === "Player 1";
@@ -77,13 +81,13 @@ export default {
 
 <style>
 .resources__player {
-  color: var(--color-white);
+  color: rgba(255, 255, 255, 0.2);
   font-size: 3rem;
   text-shadow: var(--text-shadow--small);
-  border-bottom: 3px solid red;
   display: inline-block;
   margin: 0 auto;
   margin-bottom: 2rem;
+  transition: all 0.2s;
 }
 
 .resources {
@@ -97,6 +101,13 @@ export default {
   padding: 2rem;
   width: 30rem;
   z-index: 5000;
+}
+
+.active {
+  letter-spacing: 3px;
+  transform: scale(1.1);
+  color: var(--color-white);
+  border-bottom: 3px solid red;
 }
 
 .resources--one {
