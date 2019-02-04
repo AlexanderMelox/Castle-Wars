@@ -6,7 +6,7 @@
     <div class="card__cost">{{ card.cost }}</div>
     <div class="card__body">
       <p class="card__name">{{ card.name }}</p>
-      <img class="card__icon" :src="icons[card.type]">
+      <img class="card__icon" :src="icons[card.name]">
       <p class="card__description" v-html="card.description"></p>
     </div>
   </div>
@@ -23,10 +23,20 @@ export default {
   data() {
     return {
       icons: {
-        weapons:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png",
-        bricks:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549310993/brick-wall.png"
+        archer:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318612/archery.png",
+        platoon:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318840/knight.png",
+        banshee:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318952/reaper.png",
+        swat:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319040/antivirus.png",
+        thief:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319214/carnival-mask-silhouette.png",
+        saboteur:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319275/moon.png",
+        attack:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319371/trebuchet.png"
       }
     };
   },
