@@ -166,6 +166,20 @@ export default {
           this.players[opponent].resources[resource] -= 4;
         }
       });
+    },
+    attack(player, dmg) {
+      if (this.players[player].gateHealth <= 0) {
+        this.players[player].castleHealth -= dmg;
+      } else if (this.players[player].gateHealth < dmg) {
+        const diff = dmg - this.players[player].gateHealth;
+        this.players[player].gateHealth = 0;
+        this.players[player].castleHealth -= diff;
+      } else {
+        this.players[player].gateHealth -= dmg;
+      }
+    },
+    hire(player, type) {
+      this.players[player].resources[type] += 1;
     }
   },
   computed: {},
@@ -191,6 +205,20 @@ export default {
           this.thief(opponent, activePlayer);
         } else if (card.name === "saboteur") {
           this.saboteur(opponent);
+        } else if (card.name === "platoon") {
+          this.attack(opponent, 6);
+        } else if (card.name === "archer") {
+          this.attack(opponent, 2);
+        } else if (card.name === "banshee") {
+          this.attack(opponent, 32);
+        } else if (card.name === "attack") {
+          this.attack(opponent, 12);
+        } else if (card.name === "rider") {
+          this.attack(opponent, 4);
+        } else if (card.name === "knight") {
+          this.attack(opponent, 3);
+        } else if (card.name === "recruit") {
+          this.hire(activePlayer, "soldiers");
         }
       }
 
