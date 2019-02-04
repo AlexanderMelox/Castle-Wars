@@ -34,7 +34,7 @@
     </div>
     <div class="battlefield__bottom">
       <Cards
-        v-if="isPlaying"
+        v-if="isPlaying || !isGameOver"
         :class="{ 'hide': turnIsInProgress }"
         :cards="players[activePlayer].cards"
         :resources="players[activePlayer].resources"
@@ -205,34 +205,53 @@ export default {
 
       // Action
       if (card.type === "weapons") {
-        if (card.name === "swat") {
-          this.swat(opponent);
-        } else if (card.name === "thief") {
-          this.thief(opponent, activePlayer);
-        } else if (card.name === "saboteur") {
-          this.saboteur(opponent);
-        } else if (card.name === "platoon") {
-          this.attack(opponent, 6);
-        } else if (card.name === "archer") {
-          this.attack(opponent, 2);
-        } else if (card.name === "banshee") {
-          this.attack(opponent, 32);
-        } else if (card.name === "attack") {
-          this.attack(opponent, 12);
-        } else if (card.name === "rider") {
-          this.attack(opponent, 4);
-        } else if (card.name === "knight") {
-          this.attack(opponent, 3);
-        } else if (card.name === "recruit") {
-          this.hire(activePlayer, "soldiers");
+        switch (card.name) {
+          case "swat":
+            this.swat(opponent);
+            break;
+          case "thief":
+            this.thief(opponent, activePlayer);
+            break;
+          case "saboteur":
+            this.saboteur(opponent);
+            break;
+          case "platoon":
+            this.attack(opponent, 6);
+            break;
+          case "archer":
+            this.attack(opponent, 2);
+            break;
+          case "banshee":
+            this.attack(opponent, 32);
+            break;
+          case "attack":
+            this.attack(opponent, 12);
+            break;
+          case "rider":
+            this.attack(opponent, 4);
+            break;
+          case "knight":
+            this.attack(opponent, 3);
+            break;
+          case "recruit":
+            this.hire(activePlayer, "soldiers");
+            break;
         }
       }
 
       const vm = this;
       setTimeout(function() {
-        console.log("sides changed");
         // Check if anyone won the game
         vm.checkIfGameIsOver();
+
+        // Remove old card from array
+        const cardIndex = vm.players[activePlayer].cards.findIndex(
+          c => c.name === card.name
+        );
+        vm.players[activePlayer].cards.splice(cardIndex, 1);
+
+        // Add new card to the array
+        vm.players[activePlayer].cards.push(vm.newCard());
 
         // Get resources
         vm.addResources(activePlayer);
