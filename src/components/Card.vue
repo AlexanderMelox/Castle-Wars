@@ -1,27 +1,66 @@
 <template>
-  <div :class="['card', { 'weapons': card.type }]">
+  <div :class="['card', { 'weapons': card.type, 'cant-use': cantUse }]" @click="clicked">
     <div class="card__cost">{{ card.cost }}</div>
+    <div class="card__body">
+      <p class="card__name">{{ card.name }}</p>
+      <img class="card__icon" :src="icons[card.type]">
+      <p class="card__description">{{ card.description }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    card: Object
+    card: Object,
+    resources: Number
   },
-  computed: {}
+  data() {
+    return {
+      icons: {
+        weapons:
+          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png"
+      }
+    };
+  },
+  methods: {
+    clicked() {
+      if (this.cantUse) return;
+      console.log("Clicked");
+    }
+  },
+  computed: {
+    cantUse() {
+      return this.card.cost > this.resources;
+    }
+  },
+  created() {
+    console.log();
+  }
 };
 </script>
 
 <style>
 .card {
   height: 90%;
-  background-color: green;
-  padding: 2rem;
   border-radius: 0.5rem;
   width: 15rem;
-  position: relative;
   margin: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 9000 !important;
+  box-shadow: var(--text-shadow);
+  transition: all 0.2s;
+  max-height: 18.5rem;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card:active {
+  transform: translateY(-1px);
 }
 
 .card__cost {
@@ -31,8 +70,45 @@ export default {
   right: 1rem;
 }
 
+.card__body {
+  display: flex;
+  padding: 1.5rem;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card__name {
+  color: var(--color-white);
+  font-size: 2rem;
+}
+
+.card__icon {
+  width: 6rem;
+}
+
+.card__description {
+  font-size: 1.3rem;
+}
+
+.cant-use {
+  filter: grayscale(100%) brightness(0.4);
+}
+
+.clicked-animation {
+  transition: all 3s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.clicked-animation:hover {
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
 .weapons {
   background-color: var(--color-weapons);
-  box-shadow: var(--text-shadow);
 }
 </style>

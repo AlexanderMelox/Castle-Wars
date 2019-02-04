@@ -21,7 +21,7 @@ export default [
     name: 'swat',
     type: 'weapons',
     cost: 18,
-    description: 'enemy castle 32',
+    description: 'enemy castle 10',
   },
   {
     name: 'thief',

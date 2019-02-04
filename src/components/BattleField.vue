@@ -17,7 +17,7 @@
       <Castle player="Player 2" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
     </div>
     <div class="battlefield__bottom">
-      <Cards :cards="cardHand"/>
+      <Cards :cards="cardHand" :resources="mockResources"/>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
         builders: 2,
         bricks: 5,
         soldiers: 2,
-        weapons: 5,
+        weapons: 10,
         magic: 2,
         crystals: 5
       },

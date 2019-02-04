@@ -1,6 +1,11 @@
 <template>
   <div class="cards">
-    <Card v-for="(card, i) in cards" :card="card" :key="card.name + i"/>
+    <Card
+      v-for="(card, i) in cards"
+      :card="card"
+      :key="card.name + i"
+      :resources="resources[card.type]"
+    />
   </div>
 </template>
 
@@ -15,7 +20,8 @@ export default {
     cards: {
       type: Array,
       required: true
-    }
+    },
+    resources: Object
   }
 };
 </script>
