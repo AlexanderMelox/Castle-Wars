@@ -6,41 +6,73 @@
     <h2 class="resources__player" :class="{ 'active': isActivePlayer }">{{ player }}</h2>
     <div class="resources__blocks resources__blocks--bricks">
       <div class="resources__details">
-        <div>Builders</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549315135/builder.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Builders</div>
         <div>{{ resources.builders }}</div>
       </div>
       <div class="resources__details">
-        <div>Bricks</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317147/brick.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Bricks</div>
         <div>{{ resources.bricks }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--weapons">
       <div class="resources__details">
-        <div>Soldiers</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549315223/helmet.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Soldiers</div>
         <div>{{ resources.soldiers }}</div>
       </div>
       <div class="resources__details">
-        <div>Weapons</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Weapons</div>
         <div>{{ resources.weapons }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--magic">
       <div class="resources__details">
-        <div>Magic</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316902/witch-hat.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Magic</div>
         <div>{{ resources.magic }}</div>
       </div>
       <div class="resources__details">
-        <div>Crystals</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316981/crystal.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Crystals</div>
         <div>{{ resources.crystals }}</div>
       </div>
     </div>
     <div class="resources__blocks resources__blocks--hp">
       <div class="resources__details">
-        <div>Castle</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317149/sand-castle.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Castle</div>
         <div>{{ castleHealth }}</div>
       </div>
       <div class="resources__details">
-        <div>Gate</div>
+        <img
+          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549310993/brick-wall.png"
+          class="resources__icon"
+        >
+        <div class="resources__type">Gate</div>
         <div>{{ gateHealth }}</div>
       </div>
     </div>
@@ -121,7 +153,7 @@ export default {
 .resources__blocks {
   align-self: stretch;
   border-radius: 1.5rem;
-  padding: 2rem;
+  padding: 1rem;
   color: var(--color-white);
   box-shadow: var(--text-shadow);
   border: 3px solid rgba(0, 0, 0, 0.2);
@@ -148,10 +180,20 @@ export default {
   background-color: var(--color-hp);
 }
 
+.resources__type {
+  margin-right: auto;
+}
+
+.resources__icon {
+  height: 3rem;
+  margin-right: 1rem;
+}
+
 .resources__details {
   display: flex;
   padding: 1rem;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .resources__details:first-child {
