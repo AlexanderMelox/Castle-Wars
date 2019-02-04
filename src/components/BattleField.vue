@@ -3,21 +3,29 @@
     <div class="battlefield__top">
       <PlayerResources
         player="Player 1"
-        :resources="mockResources"
-        :castleHealth="castleHealth"
-        :gateHealth="gateHealth"
+        :resources="players[0].resources"
+        :castleHealth="players[0].castleHealth"
+        :gateHealth="players[0].gateHealth"
       />
       <PlayerResources
         player="Player 2"
-        :resources="mockResources"
-        :castleHealth="castleHealth"
-        :gateHealth="gateHealth"
+        :resources="players[1].resources"
+        :castleHealth="players[1].castleHealth"
+        :gateHealth="players[1].gateHealth"
       />
-      <Castle player="Player 1" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
-      <Castle player="Player 2" :castleHealth="castleHealth" :gateHealth="gateHealth"/>
+      <Castle
+        player="Player 1"
+        :castleHealth="players[0].castleHealth"
+        :gateHealth="players[0].gateHealth"
+      />
+      <Castle
+        player="Player 2"
+        :castleHealth="players[1].castleHealth"
+        :gateHealth="players[1].gateHealth"
+      />
     </div>
     <div class="battlefield__bottom">
-      <Cards :cards="cardHand" :resources="mockResources"/>
+      <Cards :cards="cardHand" :resources="players[0].resources"/>
     </div>
   </div>
 </template>
@@ -32,16 +40,34 @@ import cards from "../data/cards.js";
 export default {
   data() {
     return {
-      mockResources: {
-        builders: 2,
-        bricks: 5,
-        soldiers: 2,
-        weapons: 10,
-        magic: 2,
-        crystals: 5
-      },
-      castleHealth: 30,
-      gateHealth: 10,
+      players: [
+        {
+          resources: {
+            builders: 2,
+            bricks: 5,
+            soldiers: 2,
+            weapons: 5,
+            magic: 2,
+            crystals: 5
+          },
+          castleHealth: 30,
+          gateHealth: 10,
+          cards: []
+        },
+        {
+          resources: {
+            builders: 2,
+            bricks: 5,
+            soldiers: 2,
+            weapons: 5,
+            magic: 2,
+            crystals: 5
+          },
+          castleHealth: 30,
+          gateHealth: 10,
+          cards: []
+        }
+      ],
       cards
     };
   },
@@ -58,6 +84,9 @@ export default {
     PlayerResources,
     Castle,
     Cards
+  },
+  created() {
+    console.log(this.players);
   }
 };
 </script>
