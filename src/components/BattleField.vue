@@ -123,10 +123,16 @@ export default {
       ].resources.magic;
     },
     checkIfGameIsOver() {
-      if (this.players[1].castleHealth <= 0) {
+      if (
+        this.players[1].castleHealth <= 0 ||
+        this.players[0].castleHealth >= 100
+      ) {
         this.isGameOver = true;
         alert("Congratulations Player 1 Won!");
-      } else if (this.players[0].castleHealth <= 0) {
+      } else if (
+        this.players[0].castleHealth <= 0 ||
+        this.players[1].castleHealth >= 100
+      ) {
         this.isGameOver = true;
         alert("Congratulations Player 2 Won!");
       }
