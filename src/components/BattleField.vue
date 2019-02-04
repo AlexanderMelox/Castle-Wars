@@ -35,6 +35,7 @@
     <div class="battlefield__bottom">
       <Cards
         v-if="isPlaying"
+        :class="{ 'hide': turnIsInProgress }"
         :cards="players[activePlayer].cards"
         :resources="players[activePlayer].resources"
       />
@@ -84,7 +85,8 @@ export default {
       ],
       cards,
       isPlaying: false,
-      isGameOver: false
+      isGameOver: false,
+      turnIsInProgress: false
     };
   },
   methods: {
@@ -134,25 +136,34 @@ export default {
       const opponent = this.activePlayer === 0 ? 1 : 0;
       return { activePlayer, opponent };
     },
+    getResourcesArray() {
+      return ["bricks", "weapons", "crystals"];
+    },
     swat(player) {
       this.players[player].castleHealth -= 10;
     },
-    thief(opponent) {
+    thief(opponent, activePlayer) {
       // 1. Creates an array of resources
-      const resourcesArray = Object.keys(
-        this.players[opponent].resources
-      ).filter(
-        resource =>
-          resource === "bricks" ||
-          resource === "weapons" ||
-          resource === "crystals"
-      );
+      const resourcesArray = this.getResourcesArray();
       // 2. Loops through each resource and deducts 5
       resourcesArray.forEach(resource => {
+        // Deduct resources from enemy
         if (this.players[opponent].resources[resource] < 5) {
           this.players[opponent].resources[resource] = 0;
         } else {
           this.players[opponent].resources[resource] -= 5;
+        }
+        // Adds it to the active player
+        this.players[activePlayer].resources[resource] += 5;
+      });
+    },
+    saboteur(opponent) {
+      const resourcesArray = this.getResourcesArray();
+      resourcesArray.forEach(resource => {
+        if (this.players[opponent].resources[resource] < 4) {
+          this.players[opponent].resources[resource] = 0;
+        } else {
+          this.players[opponent].resources[resource] -= 4;
         }
       });
     }
@@ -166,27 +177,38 @@ export default {
   created() {
     actionBus.$on("cardWasClicked", card => {
       if (this.isGameOver) return;
+      this.turnIsInProgress = true;
       const { activePlayer, opponent } = this.determineActivePlayer();
 
       // Deduct the resource from the active player
       this.players[activePlayer].resources[card.type] -= card.cost;
 
-      // 1. Action
+      // Action
       if (card.type === "weapons") {
         if (card.name === "swat") {
           this.swat(opponent);
         } else if (card.name === "thief") {
           this.thief(opponent, activePlayer);
+        } else if (card.name === "saboteur") {
+          this.saboteur(opponent);
         }
       }
-      // 2. Check if anyone won the game
-      this.checkIfGameIsOver();
 
-      // 3. Switch players
-      this.switchPlayer();
+      const vm = this;
+      setTimeout(function() {
+        console.log("sides changed");
+        // Check if anyone won the game
+        vm.checkIfGameIsOver();
 
-      // 4. Get resources
-      this.addResources(activePlayer);
+        // Get resources
+        vm.addResources(activePlayer);
+
+        // Switch players
+        vm.switchPlayer();
+
+        // Hides the cards
+        vm.turnIsInProgress = false;
+      }, 1000);
     });
   }
 };
@@ -240,5 +262,10 @@ export default {
 
 .battlefield__buttons:hover {
   transform: translateY(-3px) scale(1.1);
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
 }
 </style>

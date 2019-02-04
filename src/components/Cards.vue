@@ -32,5 +32,7 @@ export default {
   height: 100%;
   justify-content: center;
   align-items: center;
+  transition: all 0.1s;
+  visibility: visible;
 }
 </style>
