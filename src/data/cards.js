@@ -119,4 +119,64 @@ export default [
     cost: 1,
     description: 'fence +3',
   },
+  {
+    name: 'conjure crystals',
+    type: 'magic',
+    cost: 4,
+    description: 'crystals +8'
+  },
+  {
+    name: 'conjure weapons',
+    type: 'magic',
+    cost: 4,
+    description: 'weapons +8'
+  },
+  {
+    name: 'conjure bricks',
+    type: 'magic',
+    cost: 4,
+    description: 'bricks +8'
+  },
+  {
+    name: 'crush weapons',
+    type: 'magic',
+    cost: 4,
+    description: 'enemy weapons -8'
+  },
+  {
+    name: 'crush bricks',
+    type: 'magic',
+    cost: 4,
+    description: 'enemy bricks -8'
+  },
+  {
+    name: 'crush crystals',
+    type: 'magic',
+    cost: 4,
+    description: 'enemy crystals -8'
+  },
+  {
+    name: 'sorcerer',
+    type: 'magic',
+    cost: 8,
+    description: 'magic +1'
+  },
+  {
+    name: 'dragon',
+    type: 'magic',
+    cost: 21,
+    description: 'attack 25'
+  },
+  {
+    name: 'pixies',
+    type: 'magic',
+    cost: 22,
+    description: 'castle +22'
+  },
+  {
+    name: 'curse',
+    type: 'magic',
+    cost: 45,
+    description: 'all +1<br>enemies all -1'
+  },
 ];
