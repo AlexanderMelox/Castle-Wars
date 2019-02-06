@@ -6,7 +6,11 @@
     <div class="card__cost">{{ card.cost }}</div>
     <div class="card__body">
       <p class="card__name">{{ card.name }}</p>
-      <img class="card__icon" :src="icons[card.name]">
+      <img
+        class="card__icon"
+        :src="icons[card.name]"
+        :class="{ 'crush': isCrushType, 'not-crush': !isCrushType }"
+      >
       <p class="card__description" v-html="card.description"></p>
     </div>
   </div>
@@ -35,6 +39,9 @@ export default {
   computed: {
     cantUse() {
       return this.card.cost > this.resources;
+    },
+    isCrushType() {
+      return this.card.name.split(" ")[0] === "crush";
     }
   },
   created() {}
@@ -119,5 +126,10 @@ export default {
 
 .magic {
   background-color: var(--color-magic);
+}
+
+.crush {
+  filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg)
+    saturate(600%) contrast(0.8);
 }
 </style>

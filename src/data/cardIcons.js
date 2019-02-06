@@ -18,5 +18,15 @@ export default {
   babylon: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468386/lighthouse.svg",
   fort: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468479/dublin-castle.svg",
   wain: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468564/wheelbarrow.svg",
-  wall: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468602/building.svg"
+  wall: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468602/building.svg",
+  "conjure crystals": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316981/crystal.png",
+  "conjure weapons": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png",
+  "conjure bricks": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317147/brick.png",
+  "crush weapons": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318840/knight.png",
+  "crush bricks": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317147/brick.png",
+  "crush crystals": "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316981/crystal.png",
+  sorcerer: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316902/witch-hat.png",
+  dragon: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549478917/dragon.svg",
+  pixies: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549479035/wand.svg",
+  curse: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549479093/cross.svg"
 }

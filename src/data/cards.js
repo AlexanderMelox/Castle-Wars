@@ -145,7 +145,7 @@ export default [
   },
   {
     name: 'crush bricks',
-    type: 'magic',
+    type: 'crystals',
     cost: 4,
     description: 'enemy bricks -8'
   },
