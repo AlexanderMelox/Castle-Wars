@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['card', { 'weapons': card.type === 'weapons', 'building': card.type === 'bricks','cant-use': cantUse }]"
+    :class="['card', { 'weapons': card.type === 'weapons', 'building': card.type === 'bricks', 'magic': card.type === 'crystals','cant-use': cantUse }]"
     @click="clicked"
   >
     <div class="card__cost">{{ card.cost }}</div>
@@ -37,9 +37,7 @@ export default {
       return this.card.cost > this.resources;
     }
   },
-  created() {
-    console.log();
-  }
+  created() {}
 };
 </script>
 
@@ -117,5 +115,9 @@ export default {
 
 .building {
   background-color: var(--color-building);
+}
+
+.magic {
+  background-color: var(--color-magic);
 }
 </style>
