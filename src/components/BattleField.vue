@@ -209,6 +209,26 @@ export default {
     wain(opponent) {
       this.players[this.activePlayer].castleHealth += 8;
       this.players[opponent].castleHealth -= 4;
+    },
+    conjure(type) {
+      this.players[this.activePlayer].resources[type] += 8;
+    },
+    crush(type, opponent) {
+      this.players[opponent].resources[type] < 8
+        ? (this.players[opponent].resources[type] = 0)
+        : (this.players[opponent].resources[type] -= 8);
+    },
+    curse(opponent) {
+      const resourcesArray = Object.keys(
+        this.players[this.activePlayer].resources
+      );
+      // add +1 to active player
+      resourcesArray.forEach(resource => {
+        this.players[this.activePlayer].resources[resource] += 1;
+        if (this.players[opponent].resources[resource] > 0) {
+          this.players[opponent].resources[resource] -= 1;
+        }
+      });
     }
   },
   computed: {},
@@ -291,6 +311,40 @@ export default {
           case "wall":
             this.addToFence(3);
         }
+      } else if (card.type === "crystals") {
+        console.log("Active player:", activePlayer, "oppnent:", opponent);
+        switch (card.name) {
+          case "conjure crystals":
+            this.conjure("crystals", opponent);
+            break;
+          case "conjure weapons":
+            this.conjure("weapons");
+            break;
+          case "conjure bricks":
+            this.conjure("bricks");
+            break;
+          case "crush bricks":
+            this.crush("bricks", opponent);
+            break;
+          case "crush weapons":
+            this.crush("weapons", opponent);
+            break;
+          case "crush crystals":
+            this.crush("crystals", opponent);
+            break;
+          case "sorcerer":
+            this.hire("magic");
+            break;
+          case "dragon":
+            this.attack(opponent, 25);
+            break;
+          case "pixies":
+            this.addToCastle(22);
+            break;
+          case "curse":
+            this.curse(opponent);
+            break;
+        }
       }
 
       const vm = this;
@@ -315,7 +369,7 @@ export default {
 
         // Hides the cards
         vm.turnIsInProgress = false;
-      }, 1500);
+      }, 1600);
     });
   }
 };
