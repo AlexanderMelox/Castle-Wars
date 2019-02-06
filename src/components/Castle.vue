@@ -107,6 +107,7 @@ export default {
   width: 2rem;
   bottom: 0;
   border: 3px solid rgba(0, 0, 0, 0.4);
+  transition: height 1s;
 }
 
 .gate::before {

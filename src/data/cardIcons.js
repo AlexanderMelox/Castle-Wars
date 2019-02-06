@@ -1,0 +1,22 @@
+export default {
+  archer: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318612/archery.png",
+  platoon: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318840/knight.png",
+  banshee: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318952/reaper.png",
+  swat: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319040/antivirus.png",
+  thief: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319214/carnival-mask-silhouette.png",
+  saboteur: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319275/moon.png",
+  attack: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319371/trebuchet.png",
+  recruit: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549394161/drum.png",
+  rider: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549394745/horseman.png",
+  knight: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549315223/helmet.png",
+  fence: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549467277/fence.png",
+  base: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549467424/wall.png",
+  school: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549467387/sketch.png",
+  tower: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549467807/chess.svg",
+  defense: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468138/brick-wall_1.svg",
+  reserve: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468275/gift-bag.svg",
+  babylon: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468386/lighthouse.svg",
+  fort: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468479/dublin-castle.svg",
+  wain: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468564/wheelbarrow.svg",
+  wall: "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549468602/building.svg"
+}

@@ -14,6 +14,7 @@
 
 <script>
 import { actionBus } from "../main.js";
+import cardIcons from "../data/cardIcons.js";
 
 export default {
   props: {
@@ -22,22 +23,7 @@ export default {
   },
   data() {
     return {
-      icons: {
-        archer:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318612/archery.png",
-        platoon:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318840/knight.png",
-        banshee:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549318952/reaper.png",
-        swat:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319040/antivirus.png",
-        thief:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319214/carnival-mask-silhouette.png",
-        saboteur:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319275/moon.png",
-        attack:
-          "https://res.cloudinary.com/castle-wars-assets/image/upload/v1549319371/trebuchet.png"
-      }
+      icons: cardIcons
     };
   },
   methods: {
