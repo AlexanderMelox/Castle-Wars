@@ -315,7 +315,7 @@ export default {
 
         // Hides the cards
         vm.turnIsInProgress = false;
-      }, 1000);
+      }, 1500);
     });
   }
 };
