@@ -308,8 +308,10 @@ export default {
             break;
           case "wain":
             this.wain(opponent);
+            break;
           case "wall":
             this.addToFence(3);
+            break;
         }
       } else if (card.type === "crystals") {
         console.log("Active player:", activePlayer, "oppnent:", opponent);
