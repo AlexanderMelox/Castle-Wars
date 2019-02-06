@@ -1,7 +1,7 @@
 <template>
   <div
     class="resources"
-    :class="{ 'resourcses--one': isPlayerOne, 'resources--two': !isPlayerOne }"
+    :class="{ 'resources--one': isPlayerOne, 'resources--two': !isPlayerOne, 'active': isActivePlayer }"
   >
     <h2 class="resources__player" :class="{ 'active': isActivePlayer }">{{ player }}</h2>
     <div class="resources__blocks resources__blocks--bricks">
@@ -11,6 +11,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Builders</div>
+        <div class="resources__updates" v-if="buildersUpdated != ''">{{buildersUpdated}}</div>
         <div>{{ resources.builders }}</div>
       </div>
       <div class="resources__details">
@@ -19,6 +20,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Bricks</div>
+        <div class="resources__updates" v-if="bricksUpdated != ''">{{bricksUpdated}}</div>
         <div>{{ resources.bricks }}</div>
       </div>
     </div>
@@ -29,6 +31,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Soldiers</div>
+        <div class="resources__updates" v-if="soldiersUpdated != ''">{{soldiersUpdated}}</div>
         <div>{{ resources.soldiers }}</div>
       </div>
       <div class="resources__details">
@@ -37,6 +40,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Weapons</div>
+        <div class="resources__updates" v-if="weaponsUpdated != ''">{{weaponsUpdated}}</div>
         <div>{{ resources.weapons }}</div>
       </div>
     </div>
@@ -47,6 +51,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Magic</div>
+        <div class="resources__updates" v-if="magicUpdated != ''">{{magicUpdated}}</div>
         <div>{{ resources.magic }}</div>
       </div>
       <div class="resources__details">
@@ -55,6 +60,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Crystals</div>
+        <div class="resources__updates" v-if="crystalsUpdated != ''">{{crystalsUpdated}}</div>
         <div>{{ resources.crystals }}</div>
       </div>
     </div>
@@ -65,6 +71,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Castle</div>
+        <div class="resources__updates" v-if="castleHealthUpdated != ''">{{castleHealthUpdated}}</div>
         <div>{{ castleHealth }}</div>
       </div>
       <div class="resources__details">
@@ -73,6 +80,7 @@
           class="resources__icon"
         >
         <div class="resources__type">Gate</div>
+        <div class="resources__updates" v-if="gateHealthUpdated != ''">{{gateHealthUpdated}}</div>
         <div>{{ gateHealth }}</div>
       </div>
     </div>
@@ -83,8 +91,28 @@
 export default {
   data() {
     return {
-      isPlayerOne: null
+      isPlayerOne: null,
+      buildersUpdated: "",
+      bricksUpdated: "",
+      soldiersUpdated: "",
+      weaponsUpdated: "",
+      magicUpdated: "",
+      crystalsUpdated: "",
+      castleHealthUpdated: "",
+      gateHealthUpdated: ""
     };
+  },
+  methods: {
+    resetUpdates() {
+      this.buildersUpdated = "";
+      this.bricksUpdated = "";
+      this.soldiersUpdated = "";
+      this.weaponsUpdated = "";
+      this.magicUpdated = "";
+      this.crystalsUpdated = "";
+      this.castleHealthUpdated = "";
+      this.gateHealthUpdated = "";
+    }
   },
   props: {
     player: {
@@ -104,6 +132,56 @@ export default {
       required: true
     },
     isActivePlayer: Boolean
+  },
+  watch: {
+    castleHealth(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.castleHealthUpdated = `+ ${newValue - oldValue}`)
+        : (this.castleHealthUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    gateHealth(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.gateHealthUpdated = `+ ${newValue - oldValue}`)
+        : (this.gateHealthUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.builders": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.buildersUpdated = `+ ${newValue - oldValue}`)
+        : (this.buildersUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.bricks": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.bricksUpdated = `+ ${newValue - oldValue}`)
+        : (this.bricksUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.soldiers": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.soldiersUpdated = `+ ${newValue - oldValue}`)
+        : (this.soldiersUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.weapons": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.weaponsUpdated = `+ ${newValue - oldValue}`)
+        : (this.weaponsUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.magic": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.magicUpdated = `+ ${newValue - oldValue}`)
+        : (this.magicUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 2000);
+    },
+    "resources.crystals": function(newValue, oldValue) {
+      newValue > oldValue
+        ? (this.crystalsUpdated = `+ ${newValue - oldValue}`)
+        : (this.crystalsUpdated = `- ${oldValue - newValue}`);
+      setTimeout(this.resetUpdates, 1500);
+    }
   },
   created() {
     this.isPlayerOne = this.player === "Player 1";
@@ -133,9 +211,26 @@ export default {
   padding: 2rem;
   width: 30rem;
   z-index: 5000;
+  opacity: 0.5;
+  transform: scale(0.9);
 }
 
-.active {
+.resources.active {
+  opacity: 1;
+  transform: scale(0.95);
+}
+
+.resources__updates {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  color: #fff;
+  background-color: var(--castle-red);
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  line-height: 1;
+}
+
+.resources__player.active {
   letter-spacing: 3px;
   transform: scale(1.1);
   color: var(--color-white);
