@@ -7,7 +7,7 @@
     <div class="resources__blocks resources__blocks--bricks">
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549315135/builder.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549315135/builder.png"
           class="resources__icon"
         >
         <div class="resources__type">Builders</div>
@@ -16,7 +16,7 @@
       </div>
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317147/brick.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549317147/brick.png"
           class="resources__icon"
         >
         <div class="resources__type">Bricks</div>
@@ -27,7 +27,7 @@
     <div class="resources__blocks resources__blocks--weapons">
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549315223/helmet.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549315223/helmet.png"
           class="resources__icon"
         >
         <div class="resources__type">Soldiers</div>
@@ -36,7 +36,7 @@
       </div>
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549294263/sword.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549294263/sword.png"
           class="resources__icon"
         >
         <div class="resources__type">Weapons</div>
@@ -47,7 +47,7 @@
     <div class="resources__blocks resources__blocks--magic">
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316902/witch-hat.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549316902/witch-hat.png"
           class="resources__icon"
         >
         <div class="resources__type">Magic</div>
@@ -56,7 +56,7 @@
       </div>
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549316981/crystal.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549316981/crystal.png"
           class="resources__icon"
         >
         <div class="resources__type">Crystals</div>
@@ -67,7 +67,7 @@
     <div class="resources__blocks resources__blocks--hp">
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549317149/sand-castle.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549317149/sand-castle.png"
           class="resources__icon"
         >
         <div class="resources__type">Castle</div>
@@ -76,7 +76,7 @@
       </div>
       <div class="resources__details">
         <img
-          src="https://res.cloudinary.com/castle-wars-assets/image/upload/v1549310993/brick-wall.png"
+          src="https://res.cloudinary.com/alexander-melo-assets/image/upload/v1549310993/brick-wall.png"
           class="resources__icon"
         >
         <div class="resources__type">Gate</div>
